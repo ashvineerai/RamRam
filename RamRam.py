@@ -9,7 +9,7 @@ class RamRam(QMainWindow):
     def __init__(self):
         super(RamRam, self).__init__()
         PyQt5.uic.loadUi('ui/WelcomeForm.ui', self)
-        self.setWindowFlags(PyQt5.QtCore.Qt.FramelessWindowHint) 
+        #self.setWindowFlags(PyQt5.QtCore.Qt.FramelessWindowHint) 
 
         #btnWelcomeEnter
         self.btnWelcomeEnter = self.findChild(QPushButton, 'btnWelcomeEnter') # Find the button

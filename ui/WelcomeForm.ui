@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Welcome</string>
   </property>
   <widget class="QLineEdit" name="textUserName">
    <property name="geometry">
@@ -21,6 +21,17 @@
      <width>411</width>
      <height>61</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+     <pointsize>22</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>as</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnWelcomeEnter">
@@ -32,8 +43,32 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>Welcome Area </string>
+    <string>Enter </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="developedby">
+   <property name="geometry">
+    <rect>
+     <x>426</x>
+     <y>380</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string/>
+   </property>
+   <property name="text">
+    <string>github:eashvinee</string>
    </property>
   </widget>
  </widget>

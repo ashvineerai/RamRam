@@ -5,6 +5,8 @@ import PyQt5.uic
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
+import threading
+import time
 import sys
 
 class RamEditor(QWidget):
@@ -22,8 +24,11 @@ class RamEditor(QWidget):
         #print(dir(self.editorRam ))
         self.editorRam.keyPressEvent=self.typingRam
         #self.editorRam.textChanged.connect(self.typingRam)
-        self.lblCount = self.findChild(QLabel, 'lblCount') # Find the button
-        self.lblCount.setText(self.dictRamRam['nameLabel'])
+        self.lblUserName = self.findChild(QLabel, 'lblUserName') # Find the button
+        self.lblWordCount = self.findChild(QLabel, 'lblWordCount') # Find the button
+        self.lblCountDown = self.findChild(QLabel, 'lblCountDown') # Find the button
+        
+        self.lblUserName.setText(self.dictRamRam['nameLabel'])
         #self.btnWelcomeEnter.clicked.connect(self.printButtonPressed) # Remember to pass the definition/method, not the return value!
         
         self.show()
@@ -48,12 +53,32 @@ class RamEditor(QWidget):
             if(lastChar == "m"):
                 text=text+" "
 
+        
         #text=text+newChar
+        wordString=text.split()
+        wordCount=len(wordString)
+        self.lblWordCount.setText("{:02d}".format(wordCount))
+       # self.wc =1
+        #wcthread=threading.Thread( target=self.countDown, args=(self))
+        #wcthread.start()
+        #while True:
+            #print ('Hello World!')
+            #time.sleep(5)
+
+
         self.editorRam.setText(text)
         #print("Key Press:"+newChar)
         event.accept()
         return
         #pass
+
+    #def countDown(obj):
+        #lblCountDown  
+        #while True:
+        #print ('Hello World!')
+        #obj.lblCountDown.setText("{:02d}".format(obj.wc))
+       # obj.wc=obj.wc+1
+       # time.sleep(5)        
 
     def closeEvent(self, event):
         #print('close event clicked ....')
@@ -61,6 +86,7 @@ class RamEditor(QWidget):
         quit_msg = "Are you Hindu?"
         reply = QMessageBox.question(self, 'Message', quit_msg, QMessageBox.Yes, QMessageBox.No)
         if reply == QMessageBox.Yes:
+            self.close()
             self.dictRamRam["ramRamClass"].show()
             #print('OKKKKK ....')
         else:
