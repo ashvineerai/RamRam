@@ -28,6 +28,7 @@ class RamEditor(QWidget):
         self.lblWordCount = self.findChild(QLabel, 'lblWordCount') # Find the button
         self.lblCountDown = self.findChild(QLabel, 'lblCountDown') # Find the button
 
+        #Thread start here
         wcthread=threading.Thread( target=self.countDown, args=(1,))
         wcthread.start()
 
@@ -63,11 +64,6 @@ class RamEditor(QWidget):
         wordString=text.split()
         wordCount=len(wordString)
         self.lblWordCount.setText("{:02d}".format(wordCount))
-       # self.wc =1
-        #while True:
-            #print ('Hello World!')
-            #time.sleep(5)
-
 
         self.editorRam.setText(text)
         #print("Key Press:"+newChar)
@@ -76,37 +72,28 @@ class RamEditor(QWidget):
         #pass
 
     def countDown(self, obj):
-        #lblCountDown  
         countVal=0
         while True:
-            #print ('Hello World!'+str(countVal))
-            #self.countDownTimer(countVal)
             self.lblCountDown.setText(self.countDownTimer(countVal))
-            #obj.wc=obj.wc+1
             countVal=countVal+1
             time.sleep(1)   
 
     def countDownTimer(self, countVal):
         print(str(countVal))
         hrs=int(countVal/(60*60))
-        #mint=int(countVal-hrs*60*60)/60     
-        #secs=countVal-hrs*60*60-mint*60
         strTime="00:00:00"     
         if(hrs > 0):
             mint=int(countVal-(hrs*60*60)/60)     
             secs=countVal-hrs*60*60-mint*60
-            #strTime=str(hrs)+":"+str(mint)+":"+ str(secs)     
             strTime="{:02d}:{:02d}:{:02d}".format(hrs, mint, secs)
         else:
             mint=int(countVal/60)     
             if(mint > 0):
                 secs=countVal-(hrs*60*60)-(mint*60)     
-                #strTime="00:"+str(mint)+":"+ str(secs)     
                 strTime="00:{:02d}:{:02d}".format(mint, secs)
             else:
-                #strTime="00:00:"+ str(countVal)     
                 strTime="00:00:{:02d}".format( countVal)
-        print(strTime)
+        #print(strTime)
         return strTime
 
 
