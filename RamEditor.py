@@ -27,6 +27,11 @@ class RamEditor(QWidget):
         self.lblUserName = self.findChild(QLabel, 'lblUserName') # Find the button
         self.lblWordCount = self.findChild(QLabel, 'lblWordCount') # Find the button
         self.lblCountDown = self.findChild(QLabel, 'lblCountDown') # Find the button
+
+        wcthread=threading.Thread( target=self.countDown, args=(1,))
+        wcthread.start()
+
+
         
         self.lblUserName.setText(self.dictRamRam['nameLabel'])
         #self.btnWelcomeEnter.clicked.connect(self.printButtonPressed) # Remember to pass the definition/method, not the return value!
@@ -59,8 +64,6 @@ class RamEditor(QWidget):
         wordCount=len(wordString)
         self.lblWordCount.setText("{:02d}".format(wordCount))
        # self.wc =1
-        #wcthread=threading.Thread( target=self.countDown, args=(self))
-        #wcthread.start()
         #while True:
             #print ('Hello World!')
             #time.sleep(5)
@@ -72,13 +75,40 @@ class RamEditor(QWidget):
         return
         #pass
 
-    #def countDown(obj):
+    def countDown(self, obj):
         #lblCountDown  
-        #while True:
-        #print ('Hello World!')
-        #obj.lblCountDown.setText("{:02d}".format(obj.wc))
-       # obj.wc=obj.wc+1
-       # time.sleep(5)        
+        countVal=0
+        while True:
+            #print ('Hello World!'+str(countVal))
+            #self.countDownTimer(countVal)
+            self.lblCountDown.setText(self.countDownTimer(countVal))
+            #obj.wc=obj.wc+1
+            countVal=countVal+1
+            time.sleep(1)   
+
+    def countDownTimer(self, countVal):
+        print(str(countVal))
+        hrs=int(countVal/(60*60))
+        #mint=int(countVal-hrs*60*60)/60     
+        #secs=countVal-hrs*60*60-mint*60
+        strTime="00:00:00"     
+        if(hrs > 0):
+            mint=int(countVal-(hrs*60*60)/60)     
+            secs=countVal-hrs*60*60-mint*60
+            #strTime=str(hrs)+":"+str(mint)+":"+ str(secs)     
+            strTime="{:02d}:{:02d}:{:02d}".format(hrs, mint, secs)
+        else:
+            mint=int(countVal/60)     
+            if(mint > 0):
+                secs=countVal-(hrs*60*60)-(mint*60)     
+                #strTime="00:"+str(mint)+":"+ str(secs)     
+                strTime="00:{:02d}:{:02d}".format(mint, secs)
+            else:
+                #strTime="00:00:"+ str(countVal)     
+                strTime="00:00:{:02d}".format( countVal)
+        print(strTime)
+        return strTime
+
 
     def closeEvent(self, event):
         #print('close event clicked ....')
