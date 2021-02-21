@@ -1,6 +1,7 @@
 
 import PyQt5.QtCore
 import PyQt5.uic
+import PyQt5.QtGui
 from PyQt5.QtWidgets import *
 import sys
 from RamEditor import RamEditor
@@ -10,6 +11,7 @@ class RamRam(QMainWindow):
         super(RamRam, self).__init__()
         PyQt5.uic.loadUi('ui/WelcomeForm.ui', self)
         #self.setWindowFlags(PyQt5.QtCore.Qt.FramelessWindowHint) 
+        self.setWindowIcon(PyQt5.QtGui.QIcon('balloon.svg')) 
 
         #btnWelcomeEnter
         self.btnWelcomeEnter = self.findChild(QPushButton, 'btnWelcomeEnter') # Find the button
@@ -27,6 +29,7 @@ class RamRam(QMainWindow):
         dictRamRam["ramRamClass"]= self
 
         textUserName=self.textUserName.text()
+        self.textUserName.setText("")
 
         if(textUserName.strip()):
             dictRamRam["nameLabel"]= textUserName

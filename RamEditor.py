@@ -14,7 +14,9 @@ class RamEditor(QWidget):
         self.dictRamRam=dictRamRam
         super(RamEditor, self).__init__()
         PyQt5.uic.loadUi('ui/EditorRamForm.ui', self)
-        print("Ram Ram Editor")
+        self.setWindowIcon(PyQt5.QtGui.QIcon('balloon.svg')) 
+
+        #print("Ram Ram Editor")
         #print(self)
         #self.setWindowFlags(QtCore.Qt.FramelessWindowHint) 
         self.setWindowFlags( Qt.WindowCloseButtonHint )
