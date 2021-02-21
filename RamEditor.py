@@ -79,7 +79,7 @@ class RamEditor(QWidget):
             time.sleep(1)   
 
     def countDownTimer(self, countVal):
-        print(str(countVal))
+        #print(str(countVal))
         hrs=int(countVal/(60*60))
         strTime="00:00:00"     
         if(hrs > 0):
