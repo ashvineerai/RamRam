@@ -30,6 +30,8 @@ class RamEditor(QWidget):
         self.lblWordCount = self.findChild(QLabel, 'lblWordCount') # Find the button
         self.lblCountDown = self.findChild(QLabel, 'lblCountDown') # Find the button
 
+        self.developedBy()
+
         #Thread start here
         wcthread=threading.Thread( target=self.countDown, args=(1,))
         wcthread.start()
@@ -111,5 +113,10 @@ class RamEditor(QWidget):
         else:
             #print('Nooooo ....')
             event.ignore() 
+
+    def developedBy(self):
+        developedby = self.findChild(QLabel, 'developedby') # Find the button
+        developedby.setText("<a href='https://github.com/eashvinee'>github:eashvinee</a>")
+        developedby.setOpenExternalLinks(True)        
 
 

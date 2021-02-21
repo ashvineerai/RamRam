@@ -13,6 +13,8 @@ class RamRam(QMainWindow):
         #self.setWindowFlags(PyQt5.QtCore.Qt.FramelessWindowHint) 
         self.setWindowIcon(PyQt5.QtGui.QIcon('balloon.svg')) 
 
+        self.developedBy()
+        
         #btnWelcomeEnter
         self.btnWelcomeEnter = self.findChild(QPushButton, 'btnWelcomeEnter') # Find the button
         self.textUserName = self.findChild(QLineEdit, 'textUserName') # Find the button
@@ -20,8 +22,14 @@ class RamRam(QMainWindow):
         #self.textUserName.clicked.connect(self.printButtonPressed)
         self.textUserName.returnPressed.connect(self.btnWelcomeEnter.click)
         self.btnWelcomeEnter.clicked.connect(self.printButtonPressed) # Remember to pass the definition/method, not the return value!
-        
+
         self.show()
+
+    def developedBy(self):
+        developedby = self.findChild(QLabel, 'developedby') # Find the button
+        developedby.setText("<a href='https://github.com/eashvinee'>github:eashvinee</a>")
+        developedby.setOpenExternalLinks(True)
+
 
     def printButtonPressed(self):
         print('Welcome button Click ....')
